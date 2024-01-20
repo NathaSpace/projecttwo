@@ -80,4 +80,5 @@ prozent = (benutzer.punktzahl/13)*100
 #Das Ergebnis wird im angezeigten Text angezeigt mit str(punkte)
 print("Von 100% hast du  " , prozent , "% richtig")
 
+#Testcommit
 
