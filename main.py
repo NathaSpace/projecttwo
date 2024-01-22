@@ -2,10 +2,15 @@ import sqlite3                                                      #Importiert 
 connection = sqlite3.connect('benutzerdaten.db')                    #Verbindung zur Datenbank herstellen
 cursor = connection.cursor()                                        #Cursor erstellen, um SQL Abfragen durchzuführen
 
-cursor.execute('''                                                  #Tabelle erstellen, wenn sie nicht existiert
-    CREATE TABLE IF NOT EXISTS benutzer (                           
-        benutzername TEXT PRIMARY KEY,                              #Spalte für den Benutzernamen, Benutzername ist Primärschlüssel
-        punktzahl REAL                                              #Spalte für die Punktezahl
+
+#Tabelle erstellen, wenn sie nicht existiert
+#Spalte für den Benutzernamen, Benutzername ist Primärschlüssel
+#Spalte für die Punktezahl
+
+cursor.execute('''                                                  
+    CREATE TABLE IF NOT EXISTS benutzer (
+        benutzername TEXT PRIMARY KEY,
+        punktzahl REAL
     )
 ''')
 connection.commit()                                                 #Änderungen durch commit abspeichern
