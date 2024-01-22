@@ -1,4 +1,5 @@
 venv/
-
+bin/
+lib/
 
 # created by virtualenv automatically
