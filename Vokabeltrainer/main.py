@@ -1,4 +1,9 @@
 import sqlite3                                                      #Importiert SQlite Modul. Verbindung zur Datenbank herstellen (wenn Datei nicht vorhanden, erstellen)
+from fragen import fragen, WahlfalschFrage, MultipleChoiceFrage     #Importieren der Fragenarten aus der Fragen-Klasse
+from benutzer import Benutzer                                       #Importieren des Benutzers aus der Benutzer-Klasse
+import random                                                       #Zufällige Abfrage erhalten
+
+
 connection = sqlite3.connect('benutzerdaten.db')                    #Verbindung zur Datenbank herstellen
 cursor = connection.cursor()                                        #Cursor erstellen, um SQL Abfragen durchzuführen
 
@@ -15,12 +20,6 @@ cursor.execute('''
 ''')
 connection.commit()                                                 #Änderungen durch commit abspeichern
 
-
-from fragen import fragen, WahlfalschFrage, MultipleChoiceFrage     #Importieren der Fragenarten aus der Fragen-Klasse
-
-from benutzer import Benutzer                                       #Importieren des Benutzers aus der Benutzer-Klasse
-
-import random                                                       #Zufällige Abfrage erhalten
 
 alle_frage_ids = [frage.frage_id for frage in fragen]               #Liste mit Fragen-IDs erstellen
 
