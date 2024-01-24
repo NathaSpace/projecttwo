@@ -2,7 +2,7 @@ import sqlite3                                                      #Importiert 
 from fragen import fragen, WahlfalschFrage, MultipleChoiceFrage     #Importieren der Fragenarten aus der Fragen-Klasse
 from benutzer import Benutzer                                       #Importieren des Benutzers aus der Benutzer-Klasse
 import random                                                       #Zufällige Abfrage erhalten
-
+import db_handler                                                   #Importieren der Funktion - Datenbank Reset
 
 connection = sqlite3.connect('benutzerdaten.db')                    #Verbindung zur Datenbank herstellen
 cursor = connection.cursor()                                        #Cursor erstellen, um SQL Abfragen durchzuführen
@@ -19,6 +19,7 @@ cursor.execute('''
     )
 ''')
 connection.commit()                                                 #Änderungen durch commit abspeichern
+
 
 
 alle_frage_ids = [frage.frage_id for frage in fragen]               #Liste mit Fragen-IDs erstellen
@@ -127,19 +128,10 @@ while True:
         print(f"{row[0]} - Punktzahl: {row[1]}")                                            #Name in Reihe 0 und Punkte in Reihe 1
 
 
-    #Funtion zum Zurücksetzen der Datenbank
-    def reset_database():
-        confirm = input("Möchtest du die Datenbank zurücksetzen? (ja/nein): ")              #Abfrage ob zurückgesetzt werden soll
-        if confirm.lower() == 'ja':                                                         #Wenn ja, dann
-            cursor.execute('DELETE FROM benutzer')                                          #Löscht alle Datensätze in der Tabelle
-            connection.commit()                                                             #Bestätigt die Änderung
-            print("Datenbank wurde erfolgreich zurückgesetzt.")                             #Anzeige des Status
-        else:                                                                               #Wenn keine Bestätigung dann nicht zurückgesetzt
-            print("Nicht zurückgesetzt.")
 
 
     #Zurücksetzen der Datenbank, Funktion wird am Ende aufgerufen
-    reset_database()
+    db_handler.reset_database()
 
     #Erneut Spielen? Hängt mit while True vom Anfang zusammen. 
     erneut_spielen = input("Möchtest du das Quiz erneut spielen? (ja/nein): ")              #Soll erneut gespielt werden?
