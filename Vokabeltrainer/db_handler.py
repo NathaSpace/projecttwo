@@ -1,3 +1,4 @@
+import sqlite3                                                                          #Importiert die Sqlite3
 def reset_database():                                                                   #Definition der Funktion reset_database
     confirm = input("Möchtest du die Datenbank zurücksetzen? (ja/nein): ")              #Benutzerabfrage für das Zurücksetzen der Datenbank
     if confirm.lower() == 'ja':                                                         #Eingabe ja?
