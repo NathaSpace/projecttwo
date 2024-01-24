@@ -9,3 +9,4 @@ def reset_database():
         conn.close()
     else:
         print("Nicht zurückgesetzt.")
+        
